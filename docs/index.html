@@ -34,6 +34,20 @@ summary{cursor:pointer;font-weight:600}
 .check input{margin-top:5px;width:18px;height:18px;flex:none}
 small,.mute{color:var(--mute)}
 a{color:var(--accent)}
+.fig{margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.fig svg{display:block;width:100%;height:auto;font:15px system-ui,sans-serif}
+.fig figcaption{font-size:.92rem;color:var(--mute);margin-top:6px;text-align:center}
+.body{fill:var(--card);stroke:var(--mute);stroke-width:2}
+.btn{fill:none;stroke:var(--line);stroke-width:2}
+.screen{fill:var(--line)}
+.slot,.card{fill:var(--line);stroke:var(--mute);stroke-width:1.5}
+.slot-ok,.card-ok{fill:var(--okbg);stroke:var(--ok);stroke-width:2.5}
+.win{fill:var(--card);stroke:var(--line);stroke-width:2}
+.drive{fill:var(--bg);stroke:var(--line);stroke-width:2}
+.drive-ok{fill:var(--okbg);stroke:var(--ok);stroke-width:3}
+.t-mute{fill:var(--mute)}
+.t-strong{fill:var(--ink);font-weight:600}
+.t-ok{fill:var(--ok);font-weight:700}
 </style>
 </head>
 <body>
@@ -44,7 +58,42 @@ a{color:var(--accent)}
 <section class="step" id="s1">
   <h2><span class="n">1</span> Coloque o cartão no computador</h2>
   <p>Desligue o Anbernic e tire o cartão <b>onde estão os jogos</b>: se o aparelho tem dois cartões, é o <b>da direita</b>; se tem um só, é esse. Coloque no computador e use o <b>Chrome</b> ou o <b>Edge</b>.</p>
-  <p class="mute">O Windows pode mostrar duas ou três unidades novas. A certa é a que tem as pastas <b>psx</b> e <b>ports</b> (costuma se chamar GAMES ou ROMS).</p>
+  <figure class="fig">
+    <svg viewBox="0 0 520 250" role="img" aria-label="Anbernic visto de baixo: dois cartões; o da direita, dos jogos, é o certo">
+      <text x="260" y="22" text-anchor="middle" class="t-mute">o Anbernic visto por baixo (onde ficam os cartões)</text>
+      <rect x="40" y="40" width="440" height="110" rx="26" class="body"/>
+      <circle cx="105" cy="95" r="22" class="btn"/><circle cx="415" cy="95" r="22" class="btn"/>
+      <rect x="180" y="70" width="160" height="50" rx="6" class="screen"/>
+      <rect x="150" y="146" width="70" height="10" rx="3" class="slot"/>
+      <rect x="300" y="146" width="70" height="10" rx="3" class="slot-ok"/>
+      <rect x="160" y="160" width="50" height="30" rx="4" class="card"/>
+      <rect x="310" y="160" width="50" height="30" rx="4" class="card-ok"/>
+      <text x="185" y="214" text-anchor="middle" class="t-mute">esquerda</text>
+      <text x="185" y="232" text-anchor="middle" class="t-mute">sistema · não mexa</text>
+      <text x="335" y="214" text-anchor="middle" class="t-ok">✓ direita</text>
+      <text x="335" y="232" text-anchor="middle" class="t-ok">jogos · é este</text>
+    </svg>
+    <figcaption>Tem só <b>um</b> cartão? Então é esse mesmo.</figcaption>
+  </figure>
+  <figure class="fig">
+    <svg viewBox="0 0 520 190" role="img" aria-label="No computador, escolha a unidade que tem as pastas psx e ports">
+      <text x="260" y="22" text-anchor="middle" class="t-mute">no computador, ao clicar em “Escolher o cartão”</text>
+      <rect x="30" y="38" width="460" height="140" rx="10" class="win"/>
+      <g transform="translate(55,60)">
+        <rect width="190" height="100" rx="8" class="drive"/>
+        <text x="95" y="30" text-anchor="middle" class="t-strong">✗ ANBERNIC</text>
+        <text x="95" y="56" text-anchor="middle" class="t-mute">KERNEL · SYSTEM</text>
+        <text x="95" y="80" text-anchor="middle" class="t-mute">não é esta</text>
+      </g>
+      <g transform="translate(275,60)">
+        <rect width="190" height="100" rx="8" class="drive-ok"/>
+        <text x="95" y="30" text-anchor="middle" class="t-ok">✓ GAMES / JOGOS</text>
+        <text x="95" y="56" text-anchor="middle" class="t-mute">psx · ports · bios</text>
+        <text x="95" y="80" text-anchor="middle" class="t-ok">é esta</text>
+      </g>
+    </svg>
+    <figcaption>O nome pode mudar. Vale a que tiver as pastas <b>psx</b> e <b>ports</b>. Se escolher a errada, o site avisa.</figcaption>
+  </figure>
   <button id="pick">Escolher o cartão</button>
   <div id="r1"></div>
 </section>
