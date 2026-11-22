@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chrono Cross no Anbernic</title>
+<meta name="description" content="Deixa o Chrono Cross bonito no seu Anbernic: coloque o cartão, clique e pronto.">
+<style>
+:root{--bg:#f4f1ea;--card:#fffdf8;--ink:#1f2328;--mute:#5d646d;--line:#e2dccf;--accent:#2a62c9;--accent-ink:#fff;--ok:#1f7a4a;--okbg:#e6f4ec;--warn:#8a5a00;--warnbg:#fdf3dc;--bad:#a5302a;--badbg:#fbe7e5}
+@media (prefers-color-scheme:dark){:root{--bg:#15171a;--card:#1d2024;--ink:#e9e6df;--mute:#9aa1a9;--line:#2e3238;--accent:#6f9bf0;--accent-ink:#0e1420;--ok:#5fcf91;--okbg:#17291f;--warn:#e7b65a;--warnbg:#2b2416;--bad:#f08a82;--badbg:#2e1a19}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:1.9rem;line-height:1.2;margin:0 0 8px}
+.lead{color:var(--mute);margin:0 0 28px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:0 0 16px}
+.step h2{font-size:1.15rem;margin:0 0 8px;display:flex;gap:10px;align-items:center}
+.n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:.95rem}
+.step.off{opacity:.45}
+button{font:inherit;font-weight:600;border:0;border-radius:10px;padding:12px 20px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.msg{border-radius:10px;padding:12px 14px;margin-top:14px}
+.msg.ok{background:var(--okbg);color:var(--ok)}
+.msg.warn{background:var(--warnbg);color:var(--warn)}
+.msg.bad{background:var(--badbg);color:var(--bad)}
+.msg b{color:inherit}
+ol,ul{padding-left:22px;margin:8px 0}
+li{margin:4px 0}
+kbd{font:600 .85em ui-monospace,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;background:var(--bg)}
+details{margin-top:28px}
+summary{cursor:pointer;font-weight:600}
+.check li{list-style:none;margin-left:-22px}
+.check label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.check input{margin-top:5px;width:18px;height:18px;flex:none}
+small,.mute{color:var(--mute)}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+<h1>Chrono Cross bonito no Anbernic</h1>
+<p class="lead">Tira o pontilhado, centraliza a tela e deixa os cenários suaves com cores vivas, <b>só no Chrono Cross</b>. Os outros jogos de PS1 ficam com uma imagem limpa e leve, sem travar.</p>
+
+<section class="step" id="s1">
+  <h2><span class="n">1</span> Coloque o cartão no computador</h2>
+  <p>Desligue o Anbernic e tire o cartão <b>onde estão os jogos</b>: se o aparelho tem dois cartões, é o <b>da direita</b>; se tem um só, é esse. Coloque no computador e use o <b>Chrome</b> ou o <b>Edge</b>.</p>
+  <p class="mute">O Windows pode mostrar duas ou três unidades novas. A certa é a que tem as pastas <b>psx</b> e <b>ports</b> (costuma se chamar GAMES ou ROMS).</p>
+  <button id="pick">Escolher o cartão</button>
+  <div id="r1"></div>
+</section>
+
+<section class="step off" id="s2">
+  <h2><span class="n">2</span> Gravar o consertador</h2>
+  <p>Coloca no cartão um programinha que o próprio Anbernic roda. Nada do sistema muda agora.</p>
+  <button id="write" disabled>Gravar no cartão</button>
+  <div id="r2"></div>
+</section>
+
+<section class="step off" id="s3">
+  <h2><span class="n">3</span> Rodar no Anbernic</h2>
+  <ol>
+    <li>No computador, <b>ejete o cartão</b> antes de tirar (Windows: ícone do pendrive perto do relógio → Ejetar).</li>
+    <li>Coloque o cartão de volta no mesmo lugar do Anbernic e ligue.</li>
+    <li>No menu dos sistemas, vá até <b>Ports</b> e abra <b>Arrumar Chrono Cross</b>.</li>
+    <li>Espere uns segundos. Ele volta sozinho para o menu. (No cartão fica um arquivo <b>Chrono Cross - resultado.txt</b> contando o que fez.)</li>
+    <li>Abra o Chrono Cross. 🎉</li>
+  </ol>
+  <p class="mute">Não gostou? Reinicie o aparelho e, em <b>Ports</b>, abra <b>Desfazer Chrono Cross</b>. Fica tudo como era antes.<br>Se o Ports não aparecer, no menu aperte <kbd>Start</kbd> → Configurações de jogos → Atualizar lista de jogos (ou só reinicie).</p>
+</section>
+
+<details id="manual">
+  <summary>Não funcionou ou seu Anbernic não foi reconhecido? Faça pelo menu do jogo (3 minutos)</summary>
+  <p class="mute">Funciona em qualquer Anbernic com RetroArch (muOS, Knulli, sistema de fábrica do RG35XX H/RG40XX H…). Marque cada passo ao terminar.</p>
+  <ul class="check" id="checklist">
+    <li><label><input type="checkbox"> Abra o <b>Chrono Cross</b> e chegue em qualquer tela do jogo.</label></li>
+    <li><label><input type="checkbox"> Abra o menu do RetroArch: <kbd>Menu</kbd> + <kbd>X</kbd> (em alguns é <kbd>Select</kbd> + <kbd>X</kbd> ou só <kbd>Menu</kbd>). Entre em <b>Menu rápido</b>.</label></li>
+    <li><label><input type="checkbox"> <b>Opções do núcleo</b> → Vídeo/GPU: <b>Padrão de pontilhado</b> = Desligado · <b>Centralização da tela</b> = Borderless (ou Game).</label></li>
+    <li><label><input type="checkbox"> Ainda em Opções do núcleo: <b>Resolução aprimorada</b> = Ligado · <b>Speed hack</b> da resolução = Ligado.</label></li>
+    <li><label><input type="checkbox"> <b>Gerenciar opções do núcleo</b> → <b>Salvar opções do jogo</b>. (É isso que deixa valendo só para o Chrono Cross.)</label></li>
+    <li><label><input type="checkbox"> Volte ao Menu rápido → <b>Shaders</b> → Ativar → <b>Carregar</b> → <b>rpi</b> → <b>2xScaleHQ</b>.</label></li>
+    <li><label><input type="checkbox"> Em Shaders: <b>Salvar</b> → <b>Salvar predefinição do jogo</b>.</label></li>
+    <li><label><input type="checkbox"> Feche o menu e jogue. Se ficar lento, volte e desligue a Resolução aprimorada (e salve de novo as opções do jogo).</label></li>
+  </ul>
+</details>
+
+<p style="margin-top:36px"><small>Projeto aberto: <a href="https://github.com/reset-hightide/anbernic-ps1-imagem">github.com/reset-hightide/anbernic-ps1-imagem</a>. Tudo é feito no seu computador e no seu aparelho; nada é enviado para a internet. O consertador guarda uma cópia antes de mudar qualquer coisa.</small></p>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const KIT=[
+  ['Arrumar Chrono Cross.sh','kit/Arrumar%20Chrono%20Cross.sh',''],
+  ['psx-hq-vivid.glslp','kit/shaders/psx-hq-vivid.glslp','.anbernic-ps1'],
+  ['psx-vivid.glsl','kit/shaders/psx-vivid.glsl','.anbernic-ps1'],
+];
+let root=null, ports=null;
+
+function say(el,cls,html){ $(el).innerHTML=`<div class="msg ${cls}">${html}</div>`; }
+function on(id){ $(id).classList.remove('off'); }
+async function has(dir,name,kind){ try{ return kind==='dir'? await dir.getDirectoryHandle(name) : await dir.getFileHandle(name);}catch(e){return null;} }
+async function names(dir){ const out=[]; for await (const [n,h] of dir.entries()) out.push([n,h]); return out; }
+async function readKV(fh){ const t=await (await fh.getFile()).text(); const o={}; t.split(/\r?\n/).forEach(l=>{const m=l.match(/^\s*([A-Z_]+)\s*=\s*"?([^"]*)"?/); if(m) o[m[1]]=m[2];}); return o; }
+
+async function findChrono(dir,depth=0){
+  for (const [n,h] of await names(dir)){
+    if (/^chrono cross/i.test(n) && h.kind==='file' && /\.(cue|chd|pbp|m3u|iso|img|ccd|7z|zip)$/i.test(n)) return n;
+    if (h.kind==='directory' && depth<1 && n!=='images'){ const r=await findChrono(h,depth+1); if(r) return r; }
+  }
+  return null;
+}
+
+async function detect(dir){
+  const raw=(await names(dir)).map(([n])=>n), low=raw.map(n=>n.toLowerCase());
+  const any=(...x)=>x.some(n=>low.includes(n.toLowerCase()));
+  const exact=(...x)=>x.some(n=>raw.includes(n));
+  if (any('KERNEL','SYSTEM','boot.ini','extlinux') && !any('psx','ports'))
+    return {kind:'wrong', text:'Essa é a parte do <b>sistema</b> do cartão. Clique de novo e escolha a <b>outra unidade</b>, a que tem as pastas psx e ports.'};
+  // cartão de jogos com a marca "anbernicroms" dentro de roms/ (sistema de fábrica estilo EmuELEC)
+  if (!any('psx') && any('roms')){
+    const r=await has(dir,low.includes('roms')?raw[low.indexOf('roms')]:'roms','dir');
+    if (r){ for (const [n] of await names(r)) if (/^anbernicroms/i.test(n)) { const d=await detect(r); if (d.kind==='ok') d.base=r; return d; } }
+  }
+  if (any('MUOS')) return {kind:'manual', text:'Esse Anbernic usa o <b>muOS</b>. O consertador automático ainda não funciona nele.'};
+  if (exact('Roms') && !any('psx')) return {kind:'manual', text:'Esse Anbernic usa o <b>sistema de fábrica da linha H</b> (RG35XX H, RG40XX H…). O consertador automático ainda não funciona nele.'};
+  if (any('system') && any('roms') && !any('psx')) return {kind:'manual', text:'Esse Anbernic usa o <b>Knulli/Batocera</b>. O consertador automático ainda não funciona nele.'};
+  if (!any('psx')) return {kind:'wrong', text:'Não achei a pasta <b>psx</b> aqui. Escolha a unidade do cartão que tem as pastas dos jogos (psx, ports…).'};
+  // família EmuELEC de fábrica (RG 35 e parecidos): psx + ports + ports_scripts/bezels na raiz
+  const ee = any('ports_scripts') || any('bezels') || any('anbernic');
+  if (!ee) return {kind:'manual', text:'Não reconheci o sistema deste Anbernic com certeza, então é melhor não mexer automático.'};
+  return {kind:'ok', model:'Anbernic com o sistema de fábrica (estilo EmuELEC, como o RG 35)'};
+}
+
+$('pick').onclick=async()=>{
+  if (!('showDirectoryPicker' in window)){ say('r1','bad','Este navegador não consegue gravar no cartão. Abra esta página no <b>Chrome</b> ou no <b>Edge</b> de um computador (no celular não funciona). Ou use o passo a passo pelo menu do jogo, lá embaixo.'); $('manual').open=true; return; }
+  let dir; try{ dir=await window.showDirectoryPicker({mode:'readwrite',id:'anbernic'}); }catch(e){ return; }
+  const d=await detect(dir);
+  if (d.kind==='wrong'){ say('r1','warn',d.text); return; }
+  if (d.kind==='manual'){ say('r1','warn',d.text+' Use o passo a passo pelo menu do jogo, logo abaixo. Dá o mesmo resultado.'); $('manual').open=true; $('manual').scrollIntoView({behavior:'smooth'}); return; }
+  const base=d.base||dir; root=base;
+  const psx=await has(base,'psx','dir'); const cc=psx && await findChrono(psx);
+  ports=await has(base,'ports','dir') || await base.getDirectoryHandle('ports',{create:true});
+  say('r1','ok',`Reconheci: <b>${d.model}</b>. `+(cc?`Chrono Cross encontrado: <b>${cc}</b>.`:`<br>O Chrono Cross não está neste cartão. Se o seu aparelho tem <b>dois cartões</b>, o certo é usar o <b>da direita</b> (o dos jogos): é dele que o menu Ports aparece.`));
+  on('s2'); $('write').disabled=false;
+};
+
+$('write').onclick=async()=>{
+  $('write').disabled=true;
+  try{
+    for (const [name,url,sub] of KIT){
+      const r=await fetch(url,{cache:'no-store'}); if(!r.ok) throw new Error('não baixei '+name);
+      const body=(await r.text()).replace(/\r\n/g,'\n');
+      const dir= sub? await ports.getDirectoryHandle(sub,{create:true}) : ports;
+      const w=await (await dir.getFileHandle(name,{create:true})).createWritable(); await w.write(body); await w.close();
+    }
+    say('r2','ok','Gravado em <b>ports/Arrumar Chrono Cross.sh</b>. Agora é no aparelho 👇');
+    on('s3'); $('s3').scrollIntoView({behavior:'smooth'});
+  }catch(e){ say('r2','bad','Não consegui gravar: '+e.message+'. Confira se o cartão não está travado (chavinha do adaptador) e tente de novo.'); $('write').disabled=false; }
+};
+
+// lembra os passos marcados no manual (só neste navegador)
+document.querySelectorAll('#checklist input').forEach((c,i)=>{
+  try{ c.checked=localStorage.getItem('cc-step-'+i)==='1'; }catch(e){}
+  c.onchange=()=>{ try{ localStorage.setItem('cc-step-'+i,c.checked?'1':'0'); }catch(e){} };
+});
+</script>
+</body>
+</html>
