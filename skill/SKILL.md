@@ -1,6 +1,6 @@
 ---
 name: anbernic-ps1-imagem
-description: Melhora a imagem dos jogos de PlayStation 1 num portátil Anbernic (RG 35, RG35XX, RG40XX H e parecidos) mexendo no cartão de memória do SISTEMA pelo Steam Deck/PC Linux — tira o pontilhado, centraliza a tela (some a faixa preta), liga a resolução 3D aprimorada e põe um filtro que suaviza os cenários com cores mais vivas (2xScaleHQ + ajuste de cor). Faz backup antes e dá para reverter. Use quando pedirem "melhorar a imagem do PS1 no Anbernic", "Chrono Cross/FF/PS1 tá feio/pixelado no Anbernic", "arrumar o cartão do Anbernic de um amigo", ou /anbernic-ps1-imagem.
+description: Melhora a imagem dos jogos de PlayStation 1 num portátil Anbernic (RG 35, RG35XX, RG40XX H e parecidos) mexendo no cartão de memória do SISTEMA pelo Steam Deck/PC Linux — tira o pontilhado, centraliza a tela (some a faixa preta), liga a resolução 3D aprimorada e põe um filtro que suaviza os cenários com cores mais vivas (2xScaleHQ + ajuste de cor). Também deixa a receita completa só em jogos escolhidos (ex.: Chrono Cross) e o resto leve, quando outros jogos ficarem lentos. Faz backup antes e dá para reverter. Use quando pedirem "melhorar a imagem do PS1 no Anbernic", "Chrono Cross/FF/PS1 tá feio/pixelado no Anbernic", "arrumar o cartão do Anbernic de um amigo", "os outros jogos ficaram lentos", "só para o Chrono Cross", ou /anbernic-ps1-imagem.
 ---
 
 # Imagem do PS1 no Anbernic
@@ -38,13 +38,24 @@ Uma pergunta por mensagem, em texto.
      **Isso não foi testado em aparelho** — conferir com o detector onde fica o `retroarch.cfg` e se o núcleo usado é o PCSX ReARMed. Se o sistema regravar a configuração a cada jogo (como a Rota A), achar o arquivo de origem antes. Na dúvida, usar o **plano manual** abaixo.
 4. Desmontar todas as partições (`udisksctl unmount -b ...`) e devolver o cartão.
 5. Pedir para testar e ajustar:
-   - ficou lento → `neon_enhancement_enable = disabled`
+   - ficou lento → `neon_enhancement_enable = disabled`; se a pessoa quer a receita completa **só num jogo** (ex.: Chrono Cross) e o resto leve, use a **receita por jogo** abaixo
    - cortou demais nas bordas → `screen_centering = game`
    - cores fortes/fracas demais → no aparelho: Menu rápido → Shaders → Parâmetros do shader (Saturacao, Contraste, Gama); ou mudar os padrões em `shaders/psx-vivid.glsl`
    - ficou pesado → `psx.shaderset=sharp/sharp-bilinear-simple.glslp` (imagem limpa, leve)
    - quer pixel cru → `psx.shaderset=none`
    - não gostou da suavização → `sharp/sharp-bilinear-simple.glslp`; CRT só se a pessoa pedir
 6. Para desfazer: `pkexec <skill>/scripts/reverter.sh <pasta do backup>`.
+
+## Receita por jogo (o resto fica leve)
+
+Quando a receita completa deixar outros jogos lentos (no RG 35 aconteceu com outros jogos), deixar **todos os PS1 leves** e a completa **só nos jogos escolhidos**. Rota A:
+
+`pkexec <skill>/scripts/aplicar-por-jogo.sh <STORAGE> "$HOME/Backups/anbernic-ps1-porjogo-<data>" "Jogo (Disc 1).cue" "Jogo (Disc 2).cue"`
+
+- Leve, para todos: dithering desligado, `borderless`, 3D aprimorado DESLIGADO, `psx.shaderset=sharp/sharp-bilinear-simple.glslp`.
+- Completa, só nos jogos escolhidos: `config/PCSX-ReARMed/<nome sem extensão>.opt` (cópia do global com o 3D aprimorado ligado; o RetroArch usa o arquivo daquele jogo porque `game_specific_options = "true"`) + `psx["<arquivo.ext>"].shaderset=psx-hq-vivid.glslp` no `anbernic.conf` (o `setsettings.sh` procura `plataforma["ROM"]` antes de `plataforma.` e de `global.`).
+- O nome é o do **arquivo** que o menu abre, com extensão e sem a pasta. Os jogos costumam ficar no cartão da direita (JOGOS/GAMES), e o Deck só tem um leitor, então pegar o nome antes (gamelist.xml ou `ls psx/`) ou perguntar. No RG 35: `psx/Chrono Cross (USA) (Disc 1)/Chrono Cross (USA) (Disc 1).cue`. Já incluir o Disco 2.
+- Para desfazer: `reverter.sh` com a pasta de backup (os `.opt` por jogo criados são apagados).
 
 ## Plano manual (sem cartão, a pessoa faz no aparelho)
 
